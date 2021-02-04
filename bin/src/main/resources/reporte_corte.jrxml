@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_corte" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5787aafa-e2a1-41ae-b97a-355521d34ccb">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="atiendelos"/>
+	<parameter name="id_corte" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[select ii.id_inventario,ii.descripcion,(case when cc2.tipo_mov = 'S' or cc2.tipo_mov = 'C' or cc2.tipo_mov = 'V' then cc2.cantidad * -1 else cc2.cantidad end) as cantidad_movimiento,cc2.fecha as fecha_movimiento,substr(cc2.hora,1,5) as hora_moviemiento,cc2.observaciones,cc2.tipo_mov,cc1.*,substr(cc1.hora, 1,5) as hora_corte,
+(case when cc2.tipo_mov = 'E' then 'Entrada' when cc2.tipo_mov = 'S' then 'Salida' when cc2.tipo_mov = 'OC' then 'Orden de compra' when cc2.tipo_mov = 'V' then 'Venta' when cc2.tipo_mov = 'C' then 'Corte' end) as tipo_movdescri from corte_inventario cc1 inner join control_movimientos cc2
+on cc1.id_corte = cc2.id_corte and cc2.id_corte =    $P{id_corte} 
+left join inventario ii on ii.id_inventario = cc2.id_inventario]]>
+	</queryString>
+	<field name="id_inventario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_inventario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inventario"/>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inventario"/>
+	</field>
+	<field name="cantidad_movimiento" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="cantidad_movimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="control_movimientos"/>
+	</field>
+	<field name="fecha_movimiento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fecha_movimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="control_movimientos"/>
+	</field>
+	<field name="hora_moviemiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="hora_moviemiento"/>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="observaciones"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="control_movimientos"/>
+	</field>
+	<field name="tipo_mov" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_mov"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="control_movimientos"/>
+	</field>
+	<field name="id_corte" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id_corte"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="COLUMN_9" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_inventario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="cantidad_real" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="cantidad_real"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="cantidad_programa" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="cantidad_programa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="hora" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="hora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="id_usuario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_usuario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="id_ubicacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_ubicacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="id_sucursal" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_sucursal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="id_empresa" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_empresa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="corte_inventario"/>
+	</field>
+	<field name="hora_corte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="hora_corte"/>
+	</field>
+	<field name="tipo_movdescri" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_movdescri"/>
+	</field>
+	<variable name="suma" class="java.lang.Double" resetType="Group" resetGroup="Group1" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad_movimiento}]]></variableExpression>
+	</variable>
+	<group name="Group1" isStartNewColumn="true" minHeightToStartNewPage="50">
+		<groupExpression><![CDATA[$F{id_corte}]]></groupExpression>
+		<groupHeader>
+			<band height="64">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="160" height="32" forecolor="#D40000" backcolor="#FFFFFF" uuid="40f6da3f-d364-422a-a05b-6b41333811ea"/>
+					<textElement textAlignment="Right">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Corte a fecha:]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="269" y="0" width="286" height="32" forecolor="#D40000" backcolor="#FFFFFF" uuid="587126f0-14f4-404e-a61b-8a53a7e200a2"/>
+					<textElement>
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="d7793b63-bc32-4e8d-a2c2-a249b5304c33"/>
+				</line>
+				<textField pattern="M/d/yy">
+					<reportElement mode="Opaque" x="163" y="-1" width="106" height="32" forecolor="#D40000" backcolor="#FFFFFF" uuid="89e87b8d-92ce-4854-a0e4-83685d9ddcf0"/>
+					<textElement>
+						<font size="18" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="39" width="96" height="20" forecolor="#51ABDB" backcolor="#F7F7F7" uuid="6aecd940-1d48-4b0e-b5eb-14dd844e25e2">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bf227b2-adf3-4bd6-bd5c-92b0b899ec73"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha mov]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="96" y="39" width="54" height="20" forecolor="#51ABDB" backcolor="#F7F7F7" uuid="0ab0b390-2579-41f6-a338-825043f49e5b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bf227b2-adf3-4bd6-bd5c-92b0b899ec73"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Hora]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="150" y="39" width="180" height="20" forecolor="#51ABDB" backcolor="#F7F7F7" uuid="80e13134-0abb-4655-80c9-61fa16258e5f">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bf227b2-adf3-4bd6-bd5c-92b0b899ec73"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Observaciones]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="330" y="39" width="150" height="20" forecolor="#51ABDB" backcolor="#F7F7F7" uuid="dcacb963-9269-495f-bb26-a0de431e1082">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bf227b2-adf3-4bd6-bd5c-92b0b899ec73"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo movimiento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="480" y="39" width="75" height="20" forecolor="#51ABDB" backcolor="#F7F7F7" uuid="32d8f2d9-e812-4bf1-84f8-0ae49822e1cc">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bf227b2-adf3-4bd6-bd5c-92b0b899ec73"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+			<band height="50">
+				<staticText>
+					<reportElement mode="Opaque" x="310" y="10" width="150" height="20" forecolor="#DB5151" backcolor="#FFFFFF" uuid="b8ea87f1-4614-4980-ab90-621d05d6f6fb">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bf227b2-adf3-4bd6-bd5c-92b0b899ec73"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00#">
+					<reportElement x="460" y="10" width="95" height="20" backcolor="#F7F7F7" uuid="8319cd4e-265a-4069-9e7e-69a42848f519">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd8fb6db-f83f-4e1f-ab1e-d50e22b3f3a0"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{suma}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="420" y="30" width="130" height="1" forecolor="#666666" uuid="4188a07e-614d-4f5f-a441-0ccb027ac2af"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#DE0400" uuid="9495ea0b-324a-4979-b2a8-ee4fa9363423"/>
+				<staticText>
+					<reportElement x="20" y="20" width="351" height="43" forecolor="#FFFFFF" uuid="0e6313e5-9864-48a6-9e68-90e1c451f647"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Corte de inventario]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="e43a615a-36a2-45f7-8915-eb435993f44c"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Atiendelos restaurant]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21"/>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy">
+				<reportElement x="0" y="0" width="96" height="20" uuid="86364890-c2b8-47d6-8cc0-2f831b428b57">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bf227b2-adf3-4bd6-bd5c-92b0b899ec73"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_movimiento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="96" y="0" width="54" height="20" uuid="eff16743-54e3-4985-8156-ec6c96eb105f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73e113a7-8d63-4444-a9ad-cf10ac3ccf49"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_moviemiento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="150" y="0" width="180" height="20" uuid="5447f5d6-0f44-4606-a694-b71950467e62">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b73b4c67-d121-4335-8174-7c2297fffe3a"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="330" y="-1" width="150" height="20" uuid="de2258fa-d161-477e-924b-a3003211bcbb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="553ad73f-80de-4759-aacb-b3cf3e53bc48"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_movdescri}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00#">
+				<reportElement x="480" y="0" width="75" height="20" uuid="9f55d511-e80c-4901-9516-b53a1c90d690">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd8fb6db-f83f-4e1f-ab1e-d50e22b3f3a0"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_movimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="45">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="17" width="515" height="13" backcolor="#E6E6E6" uuid="6b6e82e5-3a6c-422c-8298-8af70edb959d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="17" width="40" height="13" backcolor="#E6E6E6" uuid="6af2e9f2-216b-4d26-ae0c-70cd7d631993"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="627de95a-15ba-4bca-9113-f212c224d053"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
